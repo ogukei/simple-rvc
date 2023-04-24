@@ -1,0 +1,9 @@
+
+__pycache__/
+
+/models/*
+!/models/.gitignore
+
+input.wav
+output.wav
+*.pth

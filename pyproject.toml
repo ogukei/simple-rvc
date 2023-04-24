@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "voice-changer"
+version = "0.1.0"
+description = ""
+authors = ["Keitaro Oguri"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "voice_changer"}]
+
+# https://github.com/w-okada/voice-changer/blob/04c009416ab1cf6d6c232eb0b2d62b691bad7ec3/server/requirements.txt
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+uvicorn = "^0.21.1"
+pyOpenSSL = "^23.1.1"
+numpy = "^1.23.5"
+torch = "^1.13.1"
+resampy = "^0.4.2"
+python-socketio = "^5.8.0"
+fastapi = "^0.95.1"
+python-multipart = "^0.0.6"
+onnxruntime-gpu = "^1.14.1"
+pyworld = "^0.3.3"
+scipy = "^1.10.1"
+matplotlib = "^3.7.1"
+fairseq = "^0.12.2"
+websockets = "^11.0.2"
+praat-parselmouth = "^0.4.3"
+faiss-cpu = "^1.7.3"
+torchcrepe = "^0.0.18"
+librosa = "^0.9.1"
+gin = "^0.1.6"
+gin_config = "^0.5.0"
+einops = "^0.6.0"
+local_attention = "^1.8.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
