@@ -14,8 +14,8 @@ Requires NVIDIA GPUs capable of running CUDA at the moment. Ubuntu 22.04 LTS is 
     * https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installing-on-ubuntu-and-debian
 1. Create image by running the following command
 ```
-cd simple-rvs
-sudo docker build -t simple_rvs .
+cd simple-rvc
+sudo docker build -t simple_rvc .
 ```
 
 ### Prepare Files
@@ -24,7 +24,7 @@ sudo docker build -t simple_rvs .
 1. Make sure the filename matches as `pth_model_filename` specified in `src/main.py`
 1. Create `input.wav` for your audio conversion input. Here is an example command using FFmpeg for preparing an input audio file.
 ```
-cd simple-rvs
+cd simple-rvc
 ffmpeg -i raw_audio.mp3 -ss 00:00:00 -t 00:00:30 -c:a pcm_s16le -ar 48000 -ac 1 input.wav
 ```
 
@@ -38,7 +38,7 @@ sudo docker run -it \
   --runtime=nvidia \
   --gpus all \
   --entrypoint /bin/bash \
-  simple_rvs
+  simple_rvc
 
 # make sure input.wav exists at `../workspace`
 poetry run python ../workspace/src/main.py

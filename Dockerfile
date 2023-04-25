@@ -23,7 +23,7 @@ RUN wget https://github.com/openvpi/vocoders/releases/download/nsf-hifigan-v1/ns
 RUN apt-get install -y unzip
 RUN unzip nsf_hifigan_20221211.zip
 
-# sudo docker build -t simple_rvs .
-# sudo docker run --rm --runtime=nvidia --gpus all --name vc -it --entrypoint /bin/bash -v .:/workspace simple_rvs
+# sudo docker build -t simple_rvc .
+# sudo docker run --rm --runtime=nvidia --gpus all --name vc -it --entrypoint /bin/bash -v .:/workspace simple_rvc
 
 # poetry run python ../workspace/src/main.py
