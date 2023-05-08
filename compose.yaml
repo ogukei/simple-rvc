@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  simple_rvc:
+    build: .
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    image: simple_rvc
+    container_name: simple_rvc
+    volumes:
+      - .:/workspace
+    devices:
+      - /dev/snd:/dev/snd
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
