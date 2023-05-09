@@ -85,13 +85,6 @@ def export_onnx(
     model.hubert.load_state_dict(hubert_state)
     model.vits.load_state_dict(vits_state, strict=vits_strict)
 
-    # save
-    # model.save_pretrained(save_directory, safe_serialization=safe_serialization)
-    # feature_extractor = RVCFeatureExtractor(f0_method=f0_method)
-    # feature_extractor.save_pretrained(
-    #     save_directory, safe_serialization=safe_serialization
-    # )
-
     model.eval()
     model.to("cpu")
 
@@ -114,6 +107,7 @@ def export_onnx(
             "output": {0: "batch", 1: "sequence"},
         },
     )
+
     return model
 
 

@@ -1,9 +1,9 @@
 
 ## Simple RVC
 
-Heavily WIP.
+(WIP) Provides an easy-to-use command-line tool to apply voice conversion with RVC.
 
-Provides an easy-to-use command-line tool to apply voice conversion with RVC.
+Heavily WIP. Currently just wraps the [hf-rvc](https://github.com/esnya/hf-rvc) and added some tweaks to the code to export ONNX models.
 
 ## Setup
 
@@ -18,41 +18,22 @@ cd simple-rvc
 sudo docker build -t simple_rvc .
 ```
 
-### Prepare Files
-
-1. Download the .pth model such as [天之つき学習モデル](https://amanotuki.booth.pm/items/4693675) and place it in `models/`
-1. Make sure the filename matches as `pth_model_filename` specified in `src/main.py`
-1. Create `input.wav` for your audio conversion input. Here is an example command using FFmpeg for preparing an input audio file.
-```
-cd simple-rvc
-ffmpeg -i raw_audio.mp3 -ss 00:00:00 -t 00:00:30 -c:a pcm_s16le -ar 48000 -ac 1 input.wav
-```
-
 ### Run
-1. Run the following command
+1. Run the following command to export ONNX models.
+    * Make sure `./models/model.pth` exists
 
 ```
-sudo docker run -it \
-  -v .:/workspace \
-  --rm \
-  --runtime=nvidia \
-  --gpus all \
-  --entrypoint /bin/bash \
-  simple_rvc
-
-# make sure input.wav exists at `../workspace`
-poetry run python ../workspace/src/main.py
-
-# output.wav will be generated in `../workspace`
-exit
+sudo docker compose up -d
+sudo docker compose exec simple_rvc /bin/bash
+python3 -m hf_rvc export-onnx --hubert-path hubert_base.pt \
+--output-path ../../workspace/models/a.onnx \
+--unsafe ../../workspace/models/model.pth
 ```
 
 ## Links
 
-https://amanotuki.booth.pm/items/4693675
+https://github.com/esnya/hf-rvc
 
 https://github.com/w-okada/voice-changer
 
 https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI
-
-https://note.com/omiz_aiart/n/n558e45e36e13
